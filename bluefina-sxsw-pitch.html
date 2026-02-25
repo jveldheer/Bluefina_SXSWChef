@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bluefina × SXSW 2026 | Product Partnership</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #FFFFFF;
+            --bg-card: #F5F5F5;
+            --bg-elevated: #EBEBEB;
+            --text-primary: #0D0D0D;
+            --text-secondary: #333333;
+            --text-muted: #555555;
+            --accent: #1B6B8A;
+            --accent-light: #F2F8FB;
+            --border-color: #D0D0D0;
+            --gutter: 1.5rem;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            background-color: var(--bg-color) !important;
+            color: var(--text-primary) !important;
+            font-family: 'Space Mono', monospace;
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary) !important;
+        }
+
+        .serif-italic { font-family: 'Playfair Display', serif; font-style: italic; }
+        .mono-bold { font-family: 'Space Mono', monospace; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+        
+        a { color: var(--text-primary); text-decoration: none; transition: color 0.3s; }
+        a:hover { color: var(--accent); }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 var(--gutter); }
+
+        .section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes countPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+                        transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+                        transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+                        transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .logo { 
+            font-size: 0.9rem; 
+            letter-spacing: 1px; 
+            font-weight: 700;
+            color: var(--text-primary) !important;
+            white-space: nowrap;
+        }
+        .logo span { color: var(--accent) !important; }
+        
+        .cta-btn {
+            background: var(--accent);
+            color: #FFFFFF !important;
+            padding: 0.6rem 1.25rem;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            border: none;
+            transition: all 0.3s;
+            font-family: 'Space Mono', monospace;
+            cursor: pointer;
+        }
+        .cta-btn:hover { 
+            background: var(--text-primary); 
+            color: #FFFFFF !important; 
+            transform: translateY(-1px);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 4rem 0 3rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-meta-item {
+            font-size: 0.65rem;
+            color: var(--text-muted) !important;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: fadeUp 0.7s ease-out both;
+        }
+        .hero-meta-item:nth-child(1) { animation-delay: 0.2s; }
+        .hero-meta-item:nth-child(2) { animation-delay: 0.35s; }
+        .hero-meta-item:nth-child(3) { animation-delay: 0.5s; }
+        .hero-meta-item:nth-child(4) { animation-delay: 0.65s; }
+
+        .hero-meta-item span {
+            display: block;
+            color: var(--text-primary) !important;
+            font-size: 0.85rem;
+            margin-top: 0.35rem;
+            font-weight: 700;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 7vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            color: var(--text-primary) !important;
+            animation: fadeUp 0.8s ease-out 0.4s both;
+        }
+        
+        .hero-tagline {
+            font-size: 0.8rem;
+            color: var(--text-secondary) !important;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            animation: fadeUp 0.8s ease-out 0.55s both;
+        }
+
+        .hero-desc {
+            color: var(--text-secondary) !important;
+            font-size: 0.95rem;
+            max-width: 650px;
+            margin-bottom: 2rem;
+            animation: fadeUp 0.8s ease-out 0.7s both;
+        }
+
+        .hero-quote {
+            font-size: 1.1rem;
+            color: var(--text-primary) !important;
+            border-left: 4px solid var(--accent);
+            padding-left: 1.25rem;
+            margin: 2rem 0;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            opacity: 0;
+            transform: translateX(-40px);
+            animation: slideInLeft 0.9s ease-out 0.9s forwards;
+        }
+
+        /* Stats */
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-item {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .stat-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.25rem;
+            color: var(--accent) !important;
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-number.animate {
+            animation: countPulse 0.6s ease-out;
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+            color: var(--text-secondary) !important;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary) !important;
+        }
+
+        /* Cards Grid */
+        .grid-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1.75rem;
+            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover { 
+            border-color: var(--accent); 
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+        
+        .card-number { 
+            color: var(--accent) !important; 
+            font-size: 0.7rem; 
+            margin-bottom: 0.75rem; 
+            display: block;
+            letter-spacing: 2px;
+        }
+        .card h3 { 
+            font-size: 1.5rem; 
+            margin-bottom: 0.75rem;
+            color: var(--text-primary) !important;
+        }
+        .card p { 
+            color: var(--text-secondary) !important; 
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        /* Event Block */
+        .event-block {
+            background: var(--accent-light);
+            border: 2px solid var(--accent);
+            padding: 2rem;
+            position: relative;
+            margin-top: 2rem;
+        }
+
+        .event-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), #3A9BC2, var(--accent));
+            background-size: 200% 100%;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        .event-time {
+            font-size: 0.65rem;
+            color: var(--accent) !important;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .event-block h3 {
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-block > p {
+            color: var(--text-secondary) !important;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .event-detail-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .event-detail-list li {
+            font-size: 0.85rem;
+            color: var(--text-secondary) !important;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .event-detail-list li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--accent) !important;
+            font-weight: 700;
+        }
+
+        .event-detail-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Visual Break */
+        .visual-break {
+            background: var(--text-primary);
+            padding: 3rem var(--gutter);
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visual-break::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(27,107,138,0.1) 0%, transparent 50%, rgba(27,107,138,0.06) 100%);
+            pointer-events: none;
+        }
+
+        .visual-break h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #FFFFFF !important;
+            position: relative;
+        }
+
+        .visual-break p {
+            color: #CCCCCC !important;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: var(--accent-light);
+            border: 2px solid var(--accent);
+            border-left: 5px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .highlight-box h3 {
+            color: var(--accent) !important;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .highlight-box p {
+            color: var(--text-primary) !important;
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0 3rem;
+            text-align: center;
+        }
+
+        .footer-label {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: var(--text-muted) !important;
+            margin-bottom: 1rem;
+        }
+
+        .footer-cta {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            color: var(--text-primary) !important;
+            display: block;
+            transition: color 0.3s;
+        }
+        .footer-cta:hover { color: var(--accent) !important; }
+
+        .contact-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            align-items: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-item {
+            color: var(--text-primary) !important;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .contact-item:hover { color: var(--accent) !important; }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            color: var(--text-muted) !important;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+        }
+
+        /* Desktop */
+        @media (min-width: 640px) {
+            .stat-row { grid-template-columns: repeat(4, 1fr); }
+            .grid-section { grid-template-columns: repeat(2, 1fr); }
+            .footer-bottom { flex-direction: row; justify-content: space-between; }
+            .contact-block { flex-direction: row; justify-content: center; gap: 2rem; }
+        }
+
+        @media (min-width: 768px) {
+            :root { --gutter: 2rem; }
+            .section { padding: 5rem 0; }
+            .hero { padding: 5rem 0 4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo mono-bold">BLUEFINA <span>x</span> SXSW</div>
+            <nav>
+                <a href="#contact" class="cta-btn">Let's Partner</a>
+            </nav>
+        </header>
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    PRESENTED BY<span>SXSW Chef</span>
+                </div>
+                <div class="hero-meta-item">
+                    LOCATION<span>Kitsu Nori, Austin TX</span>
+                </div>
+                <div class="hero-meta-item">
+                    DATE<span>Thursday, March 12, 2026</span>
+                </div>
+                <div class="hero-meta-item">
+                    PROPOSAL FOR<span>Bluefina</span>
+                </div>
+            </div>
+            
+            <h1>A Whole Bluefin. A Room Full of <span class="serif-italic" style="color:#1B6B8A !important;">Chefs.</span></h1>
+            <p class="hero-tagline mono-bold">/ BLUEFINA × NEXT LEVEL CHEF × SXSW 2026</p>
+            <p class="hero-desc">10+ chefs from Gordon Ramsay's Next Level Chef are kicking off SXSW week with a watch party at Kitsu Nori in Austin, hosted in conjunction with James Beard Award winner and Top Chef champion Paul Qui. The centerpiece of the night: a whole roasted bluefin tuna from Bluefina, served to a room full of chefs, creators, and SXSW's best crowd.</p>
+            
+            <div class="hero-quote">
+                "A whole tuna at a party co-hosted by Paul Qui and the Next Level Chef cast at SXSW. That is the kind of room where a product becomes a story."
+            </div>
+        </section>
+
+        <!-- The Event -->
+        <section class="section">
+            <h2 class="section-title reveal" style="margin-bottom: 0.5rem;">The <span class="serif-italic" style="color:#1B6B8A !important;">Event</span></h2>
+            <p class="reveal stagger-1" style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; letter-spacing: 1px;">THURSDAY, MARCH 12 AT KITSU NORI WITH PAUL QUI</p>
+
+            <div class="event-block reveal">
+                <span class="event-time mono-bold">Doors at 5:30 PM / Episode at 7:00 PM</span>
+                <h3>Watch Party + Whole Tuna Roast</h3>
+                <p>A social event with the NLC cast at Paul Qui's Kitsu Nori, built around a whole bluefin and the weekly episode airing.</p>
+                <ul class="event-detail-list">
+                    <li>Hosted in conjunction with James Beard Award winner and Top Chef champion Paul Qui</li>
+                    <li>10+ Next Level Chef cast members in the room, mingling with SXSW attendees</li>
+                    <li>Whole bluefin tuna roasted and served as the visual and culinary centerpiece</li>
+                    <li>Drinks flowing, music playing, the energy of opening night at SXSW</li>
+                    <li>Full content crew capturing the tuna, the crowd, and the atmosphere</li>
+                    <li>Episode viewing at 7:00 PM with the entire cast watching together</li>
+                    <li>The kind of night people post about before they even leave the building</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Why Bluefina Wins -->
+        <section class="section">
+            <h2 class="section-title reveal" style="margin-bottom: 2rem;">Why Bluefina <span class="serif-italic" style="color:#1B6B8A !important;">Wins</span> Here</h2>
+            
+            <div class="grid-section">
+                <div class="card reveal stagger-1">
+                    <span class="card-number mono-bold">01</span>
+                    <h3>The Showpiece</h3>
+                    <p>A whole bluefin tuna is not something people scroll past. It stops the room. Every phone comes out. That is the kind of moment brands dream about.</p>
+                </div>
+                <div class="card reveal stagger-2">
+                    <span class="card-number mono-bold">02</span>
+                    <h3>Serious Chef Credibility</h3>
+                    <p>Paul Qui (James Beard, Top Chef) hosting alongside 10+ Next Level Chef contestants. Bluefina product in the hands of that caliber of chef carries real weight.</p>
+                </div>
+                <div class="card reveal stagger-3">
+                    <span class="card-number mono-bold">03</span>
+                    <h3>A Night People Talk About</h3>
+                    <p>This is not a stiff industry event. It is a party. Chefs, creators, SXSW crowds, good drinks, and a whole tuna in the middle of it all. The energy sells itself.</p>
+                </div>
+                <div class="card reveal stagger-4">
+                    <span class="card-number mono-bold">04</span>
+                    <h3>Content That Travels</h3>
+                    <p>The tuna breakdown, the plating, the crowd reactions. Every stage is a content moment that lives well beyond the night and reaches well beyond the room.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visual Break -->
+        <div class="visual-break">
+            <h2 class="reveal">The <span class="serif-italic" style="color:#FFFFFF !important;">Ask</span></h2>
+            <p class="mono-bold reveal stagger-1">WHAT WE NEED FROM BLUEFINA</p>
+        </div>
+
+        <!-- The Ask -->
+        <section class="section" id="ask">
+            <p class="reveal" style="font-size: 0.9rem; color: var(--text-secondary); max-width: 650px; margin-bottom: 2.5rem;">This is a product partnership. We are asking Bluefina to provide one whole bluefin tuna for the Thursday watch party. In return, your product becomes the centerpiece of a high-visibility SXSW event co-hosted by Paul Qui alongside 10+ nationally televised chefs, with a combined social reach of 8.5M+ followers.</p>
+
+            <div class="highlight-box reveal stagger-2">
+                <h3>What Bluefina Gets Back</h3>
+                <p>Your product as the visual and culinary centerpiece of the opening night of SXSW Chef Week at Paul Qui's Kitsu Nori. A room full of nationally televised chefs and SXSW creators all engaging with Bluefina product on camera. A combined social audience of 8.5M+ followers. We would love to hop on a quick call to walk through the specific content deliverables and figure out what makes the most sense for your team.</p>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="section">
+            <h2 class="section-title reveal" style="text-align: center; margin-bottom: 2rem;">The <span class="serif-italic" style="color:#1B6B8A !important;">Numbers</span></h2>
+            
+            <div class="stat-row" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="stat-item reveal stagger-1">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">NLC Chefs</span>
+                </div>
+                <div class="stat-item reveal stagger-2">
+                    <span class="stat-number">8.5M+</span>
+                    <span class="stat-label">Combined Followers</span>
+                </div>
+                <div class="stat-item reveal stagger-3">
+                    <span class="stat-number">400k+</span>
+                    <span class="stat-label">Est. Impressions</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="contact" class="reveal">
+            <p class="footer-label mono-bold">NEXT STEP</p>
+            <a href="mailto:sam@crowdworkmedia.com" class="footer-cta">Let's put Bluefina at the center of the table →</a>
+            
+            <div class="contact-block">
+                <a href="mailto:sam@crowdworkmedia.com" class="contact-item">sam@crowdworkmedia.com</a>
+                <a href="tel:+16163153975" class="contact-item">616-315-3975</a>
+            </div>
+            
+            <div class="footer-bottom">
+                <span>© 2026 SXSW CHEF</span>
+                <span>NLC × SXSW 2026 — BLUEFINA PROPOSAL</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    const num = entry.target.querySelector('.stat-number');
+                    if (num) num.classList.add('animate');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
